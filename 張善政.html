@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自動播放影片</title>
+    <style>
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 影片元素 -->
+    <video id="myVideo" autoplay muted>
+        <source src="114年桃園119消防節/歡迎蒞臨/市長/歡迎張善政市長蒞臨-字放大.mp4" type="video/mp4">
+        您的瀏覽器不支持影片播放。
+    </video>
+
+    <script>
+        const video = document.getElementById("myVideo");
+
+        // 當網頁載入時，影片自動播放
+        window.onload = function() {
+            video.play();
+        };
+
+        // 監聽Enter鍵事件
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                // 切換全螢幕模式
+                if (video.requestFullscreen) {
+                    video.requestFullscreen();
+                } else if (video.mozRequestFullScreen) { // Firefox
+                    video.mozRequestFullScreen();
+                } else if (video.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                    video.webkitRequestFullscreen();
+                } else if (video.msRequestFullscreen) { // IE/Edge
+                    video.msRequestFullscreen();
+                }
+
+                // 解除靜音並開始播放聲音
+                video.muted = false;
+                video.play();
+            }
+        });
+    </script>
+
+</body>
+</html>
